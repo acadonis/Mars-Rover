@@ -1,21 +1,81 @@
 
 
 //Rover 1 positioning
-let roverOneEasting = 1
-let roverOneNorthing = 1
-let roverOneDirection = 1
 
+//input
+const roverOnePositionString = '1 2 N'
+
+//split into array
+const roverOnePositionArray = roverOnePositionString.split(' ')
+
+//deconstruct arrays
+const [roverOneEastingString, roverOneNorthingString, roverOneDirectionUncoverted] = roverOnePositionArray
+
+//convert grid ref to integer
+let roverOneEasting = parseInt(roverOneEastingString, 10)
+let roverOneNorthing = parseInt(roverOneNorthingString, 10)
+
+//check conversions
+console.log('Easting', roverOneEasting, 'Northing', roverOneNorthing, 'Direction', roverOneDirectionUncoverted)
+
+//NESW conversion function
+let roverOneDirection = direction => {
+  switch(true) {
+    case direction === 'N':
+      roverOneDirection = 1
+      break
+    case direction === 'E':
+      roverOneDirection = 2
+      break
+    case direction === 'S':
+      roverOneDirection = 3
+      break
+    case direction === 'W':
+      roverOneDirection = 4
+  }
+}
+
+//reconvert back to NESW
+
+const roverOneDirectionReconvert = direction => {
+  switch(true) {
+    case direction === 1:
+      roverOneDirection = 'N'
+      break
+    case direction === 2:
+      roverOneDirection = 'E'
+      break
+    case direction === 3:
+      roverOneDirection = 'S'
+      break
+    case direction === 4:
+      roverOneDirection = 'W'
+  }
+}
+
+
+
+roverOneDirection(roverOneDirectionUncoverted)
+console.log('converted direction', roverOneDirection)
 
 //Rover 1 instructions
 
-const roverOneStringInstructions = 'MMRMM'
+const roverOneStringInstructions = 'LMLMLMLMM'
 const roverOneInstructions = roverOneStringInstructions.split('')
 
 //grid sizing
-const width = []
-const height = []
 
+const gridString= '5 5'
 
+const gridArray = gridString.split(' ')
+
+const [maxWidthString, maxHeightString] = gridArray
+
+//convert grid ref to integer
+const maxWidth = parseInt(maxWidthString, 10)
+const maxHeight = parseInt(maxHeightString, 10)
+
+console.log('max width', maxWidth, 'max height', maxHeight)
 // movement
 
 //if command is M and direction is N, add one to roverOneNorthing
@@ -32,23 +92,18 @@ const height = []
 
 //if command is R and facing +1 < 4, +1 to facing, otherwise set to 1
 
-//split roverOneStringInstructions into array roverOneInstructions
-
-
-
-
 const moveRoverFunction = movementArray => {
   for (let i = 0; i <= movementArray.length - 1; i++) {
     console.log('Function time!')
     switch (true) {
       case movementArray[i] === 'M':
-        if(roverOneDirection === 1) {
+        if(roverOneDirection === 1 && roverOneNorthing + 1 <= maxHeight) {
           roverOneNorthing += 1
-        } else if(roverOneDirection === 2){
+        } else if(roverOneDirection === 2 && roverOneEasting + 1 <= maxWidth){
           roverOneEasting +=1
-        } else if(roverOneDirection === 3){
+        } else if(roverOneDirection === 3 && roverOneNorthing - 1 >= 0){
           roverOneNorthing -=1
-        } else if (roverOneDirection === 4){
+        } else if (roverOneDirection === 4 && roverOneEasting - 1 >= 0){
           roverOneEasting -=1
         }
         break
@@ -64,12 +119,14 @@ const moveRoverFunction = movementArray => {
         } else
           roverOneDirection += 1
     }
-    console.log(roverOneNorthing)
-    console.log(roverOneEasting)
-    console.log(roverOneDirection)
+    console.log('northing', roverOneNorthing)
+    console.log('easting', roverOneEasting)
+    console.log('direction', roverOneDirection)
   }
 }
 moveRoverFunction(roverOneInstructions)
+roverOneDirectionReconvert(roverOneDirection)
+
 
 console.log(roverOneInstructions)
 console.log(roverOneEasting)
