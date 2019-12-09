@@ -9,7 +9,7 @@ const createArray = app.createArray
 const createRover = app.createRover
 const createInstructionsArray = app.createInstructionsArray
 const createGrid = app.createGrid
-const moveRover = app.moveRover
+
 
 describe('Rover movement tests', () => {
 
@@ -38,9 +38,5 @@ describe('Rover movement tests', () => {
         maxWidth: 5
       }
     )
-  })
-
-  it('Should move the rover from start to finish', () => {
-    expect(createInstructionsArray('LMLM')).to.eql(['L', 'M', 'L', 'M'])
   })
 })

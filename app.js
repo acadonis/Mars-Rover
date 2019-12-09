@@ -1,28 +1,30 @@
-const roverOneStart = '1 2 N'
 
-const roverOneInstructions = 'LMLMLMLMM'
 
 // const roverTwoStartString = '3 3 E'
 //
 // const roverTwoStringInstructions = 'MMRMMRMRRM'
 //
-const gridSize= '5 5'
 
-//future variables
+
+//VARIABLES
 
 let roverPositionArray = []
+let roverObject = {}
+let roverInstructions = []
+let grid = {}
+let roverEndOutput = ''
 
 
+//FUNCTIONS
 
-// get initial values for Rover Starting Point
+// Create array from rover starting point
 const createArray = string =>  {
   const roverPositionArray = string.split(' ')
   return roverPositionArray
 }
 
-roverPositionArray = createArray(roverOneStart)
 
-console.log(roverPositionArray)
+// roverPositionArray = createArray(roverOneStart)
 
 //deconstruct arrays into values then create Rover object
 
@@ -59,9 +61,7 @@ const createRover = array => {
   return roverObject
 }
 
-const roverObject = createRover(roverPositionArray)
-
-console.log(roverObject)
+// roverObject = createRover(roverPositionArray)
 
 //Rover 1 instructions function
 
@@ -70,8 +70,7 @@ const createInstructionsArray = string => {
   return roverArrayInstructions
 }
 
-const roverInstructions = createInstructionsArray(roverOneInstructions)
-console.log(roverInstructions)
+// roverInstructions = createInstructionsArray(roverOneInstructions)
 
 //create grid
 
@@ -90,15 +89,12 @@ const createGrid = string => {
   return gridObject
 }
 
-const grid = createGrid(gridSize)
 
-console.log(grid)
 
 //fuction to move rover
 
 const moveRover = instructionsArray => {
   for (let i = 0; i <= instructionsArray.length - 1; i++) {
-    console.log('Function time!')
     switch (true) {
       case instructionsArray[i] === 'M':
         if(roverObject.direction === 1 && roverObject.northing + 1 <= grid.maxHeight) {
@@ -123,13 +119,7 @@ const moveRover = instructionsArray => {
         } else
           roverObject.direction += 1
     }
-    console.log('northing', roverObject.northing)
-    console.log('easting', roverObject.easting)
-    console.log('direction', roverObject.direction)
   }
-
-  //reconvert back to NESW function -
-
   let roverReconvert = direction => {
     switch(true) {
       case direction === 1:
@@ -154,12 +144,60 @@ const moveRover = instructionsArray => {
 
 }
 
-console.log(moveRover(roverInstructions))
+// roverEndOutput = (moveRover(roverInstructions))
+
+//Make grid
+
+const gridSize= '5 5'
+
+grid = createGrid(gridSize)
+
+//Create and move Rover One
+
+// const roverOneStart = '1 2 N'
+// const roverOneInstructions = 'LMLMLMLMM'
+//
+// roverPositionArray = createArray(roverOneStart)
+//
+// roverObject = createRover(roverPositionArray)
+//
+// roverInstructions = createInstructionsArray(roverOneInstructions)
+//
+// roverEndOutput = (moveRover(roverInstructions))
+//
+// console.log(roverEndOutput)
+//
+// Create and move Rover Two
+//
+// const roverTwoStart = '3 3 E'
+// const roverTwoInstructions = 'MMRMMRMRRM'
+//
+// roverPositionArray = createArray(roverTwoStart)
+//
+// roverObject = createRover(roverPositionArray)
+//
+// roverInstructions = createInstructionsArray(roverTwoInstructions)
+//
+// roverEndOutput = (moveRover(roverInstructions))
+//
+// console.log(roverEndOutput)
+
+//Trying array of rover objects
+
+// const roverOneStart = '1 2 N'
+// const roverOneInstructions = 'LMLMLMLMM'
+//
+// roverPositionArray = createArray(roverOneStart)
+//
+// roverObject = createRover(roverPositionArray)
+
+
+
+//Export to test suite, working but console throws error
 
 module.exports = {
   createArray,
   createRover,
   createInstructionsArray,
-  createGrid,
-  roverOneStart
+  createGrid
 }
