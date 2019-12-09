@@ -1,0 +1,15 @@
+{
+  "name": "Mars-Rover",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "Anon",
+  "author": "ThoughtWorks Codetest",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha test/*_spec.js"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2"
+  }
+}
