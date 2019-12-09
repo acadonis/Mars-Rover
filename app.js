@@ -13,7 +13,6 @@ const roverTwoStringInstructions = 'MMRMMRMRRM'
 
 const gridString= '5 5'
 
-
 //split into array
 
 // get initial values for Rover Starting Point
@@ -29,58 +28,70 @@ const roverTwoPositionArray = makePositionArray(roverTwoStartString)
 console.log(roverTwoPositionArray)
 
 
-//deconstruct arrays into values then object
+//deconstruct arrays into values then create Rover object
 
 const createRoverObject = roverArray => {
-  const [roverOneEastingString, roverOneNorthingString, roverOneDirectionUncoverted] = roverPositionArray
-}
+  const [roverEastingString, roverNorthingString, roverDirectionUncoverted] = roverArray
+  const roverEasting = parseInt(roverEastingString, 10)
+  const roverNorthing = parseInt(roverNorthingString, 10)
 
-
-//convert grid ref to integer
-let roverOneEasting = parseInt(roverOneEastingString, 10)
-let roverOneNorthing = parseInt(roverOneNorthingString, 10)
-
-
-
-//NESW conversion function
-let roverOneDirection = direction => {
-  switch(true) {
-    case direction === 'N':
-      roverOneDirection = 1
-      break
-    case direction === 'E':
-      roverOneDirection = 2
-      break
-    case direction === 'S':
-      roverOneDirection = 3
-      break
-    case direction === 'W':
-      roverOneDirection = 4
+  let roverConvert = direction => {
+    switch(true) {
+      case direction === 'N':
+        roverConvert = 1
+        break
+      case direction === 'E':
+        roverConvert = 2
+        break
+      case direction === 'S':
+        roverConvert = 3
+        break
+      case direction === 'W':
+        roverConvert = 4
+        break
+    }
+    return roverConvert
   }
+
+  const roverDirection = roverConvert(roverDirectionUncoverted)
+
+
+  const roverObject = {
+    easting: roverEasting,
+    northing: roverNorthing,
+    direction: roverDirection
+  }
+  return roverObject
 }
 
-//reconvert back to NESW function
+const roverTwoObject = createRoverObject(roverOnePositionArray)
+console.log(roverTwoObject)
+// convert grid ref to integer
 
-const roverOneDirectionReconvert = direction => {
+
+
+
+// NESW conversion function
+
+
+//reconvert back to NESW function - ungainly
+
+let roverReconvert = direction => {
   switch(true) {
     case direction === 1:
-      roverOneDirection = 'N'
+      roverReconvert = 'N'
       break
     case direction === 2:
-      roverOneDirection = 'E'
+      roverReconvert = 'E'
       break
     case direction === 3:
-      roverOneDirection = 'S'
+      roverReconvert = 'S'
       break
     case direction === 4:
-      roverOneDirection = 'W'
+      roverReconvert = 'W'
   }
 }
 
-
-
-roverOneDirection(roverOneDirectionUncoverted)
-console.log('converted direction', roverOneDirection)
 
 //Rover 1 instructions
 
