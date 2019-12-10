@@ -4,8 +4,8 @@ let roverPositionArray = []
 let roverObject = {}
 let roverInstructions = []
 let grid = {}
-let roverEndOutput = ''
-
+let roverOneOutput = ''
+let roverTwoOutput = ''
 
 //FUNCTIONS
 
@@ -138,9 +138,9 @@ const moveRover = instructionsArray => {
 
 //MAKE GRID
 
-const gridSize= '5 5'
-
-grid = createGrid(gridSize)
+// const gridSize= '5 5'
+//
+// grid = createGrid(gridSize)
 
 //TRYING TO REFACTOR TO AVOID DUPLICATION
 
@@ -167,18 +167,22 @@ grid = createGrid(gridSize)
 
 const roverOneStart = '1 2 N'
 const roverOneInstructions = 'LMLMLMLMM'
+const gridSize = '5, 5'
 
-roverPositionArray = createArray(roverOneStart)
+const roverOneFunction = (roverOneStart, roverOneInstructions, gridSize) => {
+  grid = createGrid(gridSize)
+  roverPositionArray = createArray(roverOneStart)
+  roverObject = createRover(roverPositionArray)
+  roverInstructions = createInstructionsArray(roverOneInstructions)
+  roverOneOutput = (moveRover(roverInstructions))
+  return roverOneOutput
+}
 
-roverObject = createRover(roverPositionArray)
-
-roverInstructions = createInstructionsArray(roverOneInstructions)
-
-roverEndOutput = (moveRover(roverInstructions))
-
-console.log(roverEndOutput)
+console.log(roverOneFunction(roverOneStart, roverOneInstructions, gridSize))
 
 // CREATE AND MOVE ROVER TWO
+
+
 
 const roverTwoStart = '3 3 E'
 const roverTwoInstructions = 'MMRMMRMRRM'
@@ -189,9 +193,9 @@ roverObject = createRover(roverPositionArray)
 
 roverInstructions = createInstructionsArray(roverTwoInstructions)
 
-roverEndOutput = (moveRover(roverInstructions))
+roverTwoOutput = (moveRover(roverInstructions))
 
-console.log(roverEndOutput)
+console.log(roverTwoOutput)
 
 
 //Export to test suite, working but console throws error

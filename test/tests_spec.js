@@ -39,4 +39,12 @@ describe('Rover movement tests', () => {
       }
     )
   })
+
+  it ('Should output the final position of Rover One when fed the inputs', () => {
+    expect(roverOneFunction())
+  })
+
+
+
+
 })
