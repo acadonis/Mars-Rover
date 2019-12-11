@@ -14,9 +14,7 @@ Run *yarn test* in the terminal to run unit tests
 
 Write a program to control two rovers exploring Mars, inputting starting positions and orientation, movement instructions and a grid search size, and outputting the final position of each rover. 
 
-Input and Output
-
-Test Input:
+#### Test Input:
 
 5 5 - Grid size
 
@@ -28,7 +26,11 @@ LMLMLMLMM - Rover 1 instructions
 
 MMRMMRMRRM - Rover 2 instructions
 
-Test Output
+#### Test Output
+
+1 3 N
+
+5 1 E
 
 ### Technologies used
 
