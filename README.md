@@ -2,7 +2,7 @@
 
 ### Link
 
-[Low Carbon Travel](https://project-4-destinations.herokuapp.com/#/)
+Github repository: https://github.com/acadonis/Mars-Rover/tree/master
 
 ### Installation 
 
@@ -10,30 +10,32 @@ Fork the repository
 
 Clone the repository down to your local system
 
-Install pipenv in the terminal: *pip install pipenv*
-
-Run pipenv in your local repository: *pipenv shell*
-
 Run *yarn* in the terminal to install dependencies
+
+Run *yarn test* in the terminal to run unit tests 
 
 ### Brief
 
-Working individually, I was tasked with building a full-stack application using a Python Django API, with Django REST Framework to serve data from an SQLite database, and consuming this with a separate front-end built in React. 
+Write a program to control two rovers exploring Mars, inputting starting positions and orientation, movement instructions and a grid search size, and outputting the final position of each rover. 
 
-Key deliverables were as follows:
+Input and Output
 
-* Build a full-stack Python Django API and React application
-* Be a complete product, requiring multiple relationships and Create Read Update and Delete (CRUD)  functionality for at least two models
-* Have a visually impressive design
-* Be deployed online
-* Have automated tests for at least one RESTful resources on the back-end
+Test Input:
+
+5 5 - Grid size
+
+1 2 N - Rover 1 starting position 
+
+LMLMLMLMM - Rover 1 instructions
+
+3 3 E - Rover 2 starting position 
+
+MMRMMRMRRM - Rover 2 instructions
+
+Test Output
 
 ### Technologies used
 
-Django, Python, SQLite, React, JavaScript ES6, Axios, Bulma, HTML5, CSS 3, SASS, Yarn, pipenv, Git, Github
-
-### Timeframe
-
-7 days
+JavaScript ES6, HTML5, Yarn, Mocha, Chai
 
 ### Overview & concept of the project
