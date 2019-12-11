@@ -1,4 +1,4 @@
-/* global describe, xdescribe, it */
+/* global describe, describe, it */
 /* eslint-disable no-undef */
 
 
@@ -9,6 +9,7 @@ const createArray = app.createArray
 const createRover = app.createRover
 const createInstructionsArray = app.createInstructionsArray
 const createGrid = app.createGrid
+const freeMars = app.freeMars
 
 
 describe('Rover movement tests', () => {
@@ -40,11 +41,12 @@ describe('Rover movement tests', () => {
     )
   })
 
-  it ('Should output the final position of Rover One when fed the inputs', () => {
-    expect(roverOneFunction())
+  it('Should output the final position of both rovers as an object when fed the inputs', () => {
+    expect(freeMars('1 2 N', 'LMLMLMLMM', '3 3 E', 'MMRMMRMRRM', '5, 5')).to.eql(
+      {
+        roverOne: '1 3 N',
+        roverTwo: '5 1 E'
+      }
+    )
   })
-
-
-
-
 })

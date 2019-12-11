@@ -15,11 +15,7 @@ const createArray = string =>  {
   return roverPositionArray
 }
 
-
-// roverPositionArray = createArray(roverOneStart)
-
 //CREATE ROVER FUNCTION
-
 const createRover = array => {
   const [roverEastingString, roverNorthingString, roverDirectionUncoverted] = array
   const roverEasting = parseInt(roverEastingString, 10)
@@ -53,24 +49,17 @@ const createRover = array => {
   return roverObject
 }
 
-// roverObject = createRover(roverPositionArray)
-
 //INSTRUCTIONS STRING TO ARRAY FUNCTION
-
 const createInstructionsArray = string => {
   const roverArrayInstructions = string.split('')
   return roverArrayInstructions
 }
 
-// roverInstructions = createInstructionsArray(roverOneInstructions)
 
 //CREATE GRID FUNCTION
-
 const createGrid = string => {
   const gridArray = string.split(' ')
   const [maxWidthString, maxHeightString] = gridArray
-
-  //convert grid ref to integer
   const maxWidth = parseInt(maxWidthString, 10)
   const maxHeight = parseInt(maxHeightString, 10)
 
@@ -81,10 +70,7 @@ const createGrid = string => {
   return gridObject
 }
 
-
-
 //MOVE ROVER FUNCTION
-
 const moveRover = instructionsArray => {
   for (let i = 0; i <= instructionsArray.length - 1; i++) {
     switch (true) {
@@ -136,73 +122,30 @@ const moveRover = instructionsArray => {
 
 }
 
-//MAKE GRID
-
-// const gridSize= '5 5'
-//
-// grid = createGrid(gridSize)
-
-//TRYING TO REFACTOR TO AVOID DUPLICATION
-
-// const roverOneStart = '1 2 N'
-// const roverOneInstructions = 'LMLMLMLMM'
-//
-// const roverTwoStart = '3 3 E'
-// const roverTwoInstructions = 'MMRMMRMRRM'
-//
-// const roverOnePosition = createArray(roverOneStart)
-// const roverOneObject = createRover(roverOnePosition)
-//
-// const roverTwoPosition = createArray(roverTwoStart)
-// const roverTwoObject = createRover(roverTwoPosition)
-//
-// const rovers = [roverOneObject, roverTwoObject]
-//
-// const roverOneInstructionsArray = createInstructionsArray(roverOneInstructions)
-// const roverTwoInstructionsArray = createInstructionsArray(roverTwoInstructions)
-
-// roverEndOutput = (moveRover(roverInstructions))
-
-// CREATE AND MOVE ROVER ONE
-
-const roverOneStart = '1 2 N'
-const roverOneInstructions = 'LMLMLMLMM'
-const gridSize = '5, 5'
-
-const roverOneFunction = (roverOneStart, roverOneInstructions, gridSize) => {
+//FREE MARS!
+const freeMars = (roverOneStart, roverOneInstructions, roverTwoStart, roverTwoInstructions, gridSize) => {
   grid = createGrid(gridSize)
+
   roverPositionArray = createArray(roverOneStart)
   roverObject = createRover(roverPositionArray)
   roverInstructions = createInstructionsArray(roverOneInstructions)
-  roverOneOutput = (moveRover(roverInstructions))
-  return roverOneOutput
+  roverOneOutput = moveRover(roverInstructions)
+
+  roverPositionArray = createArray(roverTwoStart)
+  roverObject = createRover(roverPositionArray)
+  roverInstructions = createInstructionsArray(roverTwoInstructions)
+  roverTwoOutput = moveRover(roverInstructions)
+
+  return {
+    roverOne: roverOneOutput,
+    roverTwo: roverTwoOutput
+  }
 }
-
-console.log(roverOneFunction(roverOneStart, roverOneInstructions, gridSize))
-
-// CREATE AND MOVE ROVER TWO
-
-
-
-const roverTwoStart = '3 3 E'
-const roverTwoInstructions = 'MMRMMRMRRM'
-
-roverPositionArray = createArray(roverTwoStart)
-
-roverObject = createRover(roverPositionArray)
-
-roverInstructions = createInstructionsArray(roverTwoInstructions)
-
-roverTwoOutput = (moveRover(roverInstructions))
-
-console.log(roverTwoOutput)
-
-
-//Export to test suite, working but console throws error
 
 module.exports = {
   createArray,
   createRover,
   createInstructionsArray,
-  createGrid
+  createGrid,
+  freeMars
 }
