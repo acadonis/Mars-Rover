@@ -1,5 +1,4 @@
 //VARIABLES
-
 let roverPositionArray = []
 let roverObject = {}
 let roverInstructions = []
