@@ -26,7 +26,7 @@ LMLMLMLMM - Rover 1 instructions
 
 MMRMMRMRRM - Rover 2 instructions
 
-#### Test Output
+#### Test Output:
 
 1 3 N
 
